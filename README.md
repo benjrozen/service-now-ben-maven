@@ -8,8 +8,10 @@
 ## Steps to start :
 1. Clone repo
 2. Add .env file with variables for "VALID_COMPANY_EMAIL" , "COMPANY_PASSWORD", "PERSONAL_EMAIL"
-3. Run from terminal `mvn clean test -DenvFile={path-to-the-env-file}`
-3.1 Run from IDE (Intellij) -> install `EnvFile` plugin and add env file in base configuration
+
+3.  Run tests: 
+ - from terminal `mvn clean test -DenvFile={path-to-the-env-file}` 
+ - from IDE (Intellij) -> install `EnvFile` plugin and add env file in base Run/Debug configuration
    https://plugins.jetbrains.com/plugin/7861-envfile
 
 ## Scope:
