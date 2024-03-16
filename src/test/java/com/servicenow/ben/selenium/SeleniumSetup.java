@@ -8,8 +8,9 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 
-
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 
@@ -26,12 +27,14 @@ public class SeleniumSetup {
 
     @Before
     public void before() throws IOException {
-        Properties prop = System.getProperties();
-        String dir = System.getProperty("user.dir");
-        InputStream in = new FileInputStream(dir + "/" + System.getProperty("envFile"));
-        prop.load(in);
-        in.close();
-        System.setProperties(prop);
+        if (System.getProperty("envFile") != null) {
+            Properties prop = System.getProperties();
+            String dir = System.getProperty("user.dir");
+            InputStream in = new FileInputStream(dir + "/" + System.getProperty("envFile"));
+            prop.load(in);
+            in.close();
+            System.setProperties(prop);
+        }
     }
 
 
