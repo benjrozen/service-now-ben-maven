@@ -8,6 +8,12 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 
+
+import java.io.*;
+import java.util.Properties;
+
+
+
 public class SeleniumSetup {
 
     InjectedWebDriver injectedWebDriver;
@@ -16,6 +22,18 @@ public class SeleniumSetup {
     public SeleniumSetup(InjectedWebDriver injectedWebDriver) {
         this.injectedWebDriver = injectedWebDriver;
     }
+
+
+    @Before
+    public void before() throws IOException {
+        Properties prop = System.getProperties();
+        String dir = System.getProperty("user.dir");
+        InputStream in = new FileInputStream(dir + "/" + System.getProperty("envFile"));
+        prop.load(in);
+        in.close();
+        System.setProperties(prop);
+    }
+
 
     @Before("@default-webdriver")
     public void createDefaultWebdriver() {
