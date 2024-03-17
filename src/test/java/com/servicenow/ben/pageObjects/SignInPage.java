@@ -17,7 +17,7 @@ public class SignInPage extends WebPage{
         webDriverWrapper.enterText(By.cssSelector("[placeholder='Work e-mail']"), email);
     }
 
-    public void waitForSignInToast() {
+    public void signInToastAppeared() {
         webDriverWrapper.waitForVisibilityOfElement(By.cssSelector("[class='notification type-email']"));
     }
 }

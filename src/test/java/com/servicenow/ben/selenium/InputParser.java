@@ -1,4 +1,4 @@
-package com.servicenow.ben;
+package com.servicenow.ben.selenium;
 
 public class InputParser {
 

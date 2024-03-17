@@ -12,7 +12,6 @@
         <java.version>21</java.version>
         <selenium.version>4.18.1</selenium.version>
         <cucumber.version>7.15.0</cucumber.version>
-        <testng.version>7.9.0</testng.version>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
     </properties>
@@ -60,13 +59,6 @@
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>5.7.0</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>com.aventstack</groupId>
-            <artifactId>extentreports</artifactId>
-            <version>5.1.1</version>
         </dependency>
 
 
@@ -144,6 +136,12 @@
             <version>2.23.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version>
+            <scope>provided</scope>
+        </dependency>
 
 
     </dependencies>

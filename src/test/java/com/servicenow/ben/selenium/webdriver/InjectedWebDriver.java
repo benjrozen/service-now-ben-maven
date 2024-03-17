@@ -1,17 +1,9 @@
 package com.servicenow.ben.selenium.webdriver;
 
+import lombok.Data;
 import org.openqa.selenium.WebDriver;
 
-
+@Data
 public class InjectedWebDriver {
     private WebDriver driver;
-
-
-    public WebDriver getDriver() {
-        return driver;
-    }
-
-    public void setDriver(WebDriver driver) {
-        this.driver = driver;
-    }
 }

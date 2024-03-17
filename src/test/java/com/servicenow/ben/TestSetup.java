@@ -1,4 +1,4 @@
-package com.servicenow.ben.selenium;
+package com.servicenow.ben;
 
 import com.google.inject.Inject;
 import com.servicenow.ben.selenium.webdriver.ChromeDriverFactory;
@@ -7,26 +7,27 @@ import com.servicenow.ben.selenium.webdriver.InjectedWebDriver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
+import lombok.SneakyThrows;
 
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
 
 
-public class SeleniumSetup {
+public class TestSetup {
 
     InjectedWebDriver injectedWebDriver;
 
     @Inject
-    public SeleniumSetup(InjectedWebDriver injectedWebDriver) {
+    public TestSetup(InjectedWebDriver injectedWebDriver) {
         this.injectedWebDriver = injectedWebDriver;
     }
 
 
     @Before
-    public void before() throws IOException {
+    @SneakyThrows
+    public void setEnvFile() {
         if (System.getProperty("envFile") != null) {
             Properties prop = System.getProperties();
             String dir = System.getProperty("user.dir");
@@ -36,7 +37,6 @@ public class SeleniumSetup {
             System.setProperties(prop);
         }
     }
-
 
     @Before("@default-webdriver")
     public void createDefaultWebdriver() {

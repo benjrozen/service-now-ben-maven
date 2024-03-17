@@ -9,7 +9,7 @@ public class FirefoxDriverFactory extends WebDriverFactory{
     public WebDriver createWebDriver() {
         if (isCI) {
             return WebDriverManager.firefoxdriver().browserInDocker().enableVnc().enableRecording()
-                                                   .dockerRecordingPrefix("firefox--").dockerRecordingOutput(recordingsPath)
+                                                   .dockerRecordingPrefix("firefox--").dockerRecordingOutput(dockerRecordingsPath)
                                                    .create();
         }
         WebDriverManager.firefoxdriver().setup();

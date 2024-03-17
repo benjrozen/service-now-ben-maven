@@ -1,21 +1,18 @@
 package com.servicenow.ben.selenium;
 
 import com.google.inject.Inject;
-import com.servicenow.ben.InputParser;
 import com.servicenow.ben.selenium.webdriver.InjectedWebDriver;
 import com.servicenow.ben.selenium.webdriver.WebDriverWrapper;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
+import lombok.val;
+import org.junit.jupiter.api.Assertions;
 
 public class CommonSeleniumSteps {
 
-
-
     WebDriverWrapper webDriverWrapper;
-
 
     @Inject
     public CommonSeleniumSteps(InjectedWebDriver injectedWebDriver) {
@@ -34,8 +31,8 @@ public class CommonSeleniumSteps {
 
     @When("^the user (?:enters|types in) \"(.*)\" (?:in|to) \"(.*)\"")
     public void enterText(String input, String selector) {
-        String parsedInput = InputParser.parse(input);
-        By parsedSelector = WebElementSelectorParser.parse(selector);
+        val parsedInput = InputParser.parse(input);
+        val parsedSelector = WebElementSelectorParser.parse(selector);
         webDriverWrapper.enterText(parsedSelector, parsedInput);
     }
 
@@ -43,7 +40,15 @@ public class CommonSeleniumSteps {
     @Then("the {string} should appear")
     @Then("the user sees {string}")
     public void theUserShouldSee(String selector) {
-        By parsedWebElement = WebElementSelectorParser.parse(selector);
+        val parsedWebElement = WebElementSelectorParser.parse(selector);
         webDriverWrapper.waitForVisibilityOfElement(parsedWebElement);
+    }
+
+    @Then("the url should contain {string}")
+    public void theUrlShouldContain(String path) {
+        val urlIsCorrect = webDriverWrapper.urlContains(path);
+        if (!urlIsCorrect) {
+            Assertions.fail("Url did not contain: " + path);
+        }
     }
 }

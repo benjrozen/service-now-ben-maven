@@ -12,7 +12,7 @@ public class ChromeDriverFactory extends WebDriverFactory {
     public WebDriver createWebDriver() {
         if (isCI) {
             return WebDriverManager.chromedriver().browserInDocker().enableVnc().enableRecording()
-                                                  .dockerRecordingPrefix("chrome--").dockerRecordingOutput(recordingsPath)
+                                                  .dockerRecordingPrefix("chrome--").dockerRecordingOutput(dockerRecordingsPath)
                                                   .create();
         }
         WebDriverManager.chromedriver().setup();

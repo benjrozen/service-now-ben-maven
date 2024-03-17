@@ -1,8 +1,11 @@
 package com.servicenow.ben.selenium.webdriver;
 
 import com.servicenow.ben.log.Log;
+import lombok.val;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -29,6 +32,10 @@ public class WebDriverWrapper {
     }
 
     public void waitForElementAndClick(By selector) {
+        WebElement element = driver.findElement(selector);
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element);
+        actions.perform();
         waitForPresenceOfElementInDOM(selector);
         waitForVisibilityOfElement(selector);
         waitForElementToBeClickable(selector);
@@ -38,10 +45,6 @@ public class WebDriverWrapper {
 
     private void waitForPresenceOfElementInDOM(By by) {
         new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.presenceOfElementLocated(by));
-    }
-
-    public void waitForInVisibilityOfElement(By by) {
-        new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.invisibilityOfElementLocated(by));
     }
 
     private void waitForElementToBeClickable(By by) {
@@ -54,5 +57,15 @@ public class WebDriverWrapper {
 
     public void waitForVisibilityOfElement(By by) {
         new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.visibilityOfElementLocated(by));
+    }
+
+    public boolean isVisible(By by) {
+        val webElement =  new WebDriverWait(driver, Duration.ofSeconds(30))
+                                                              .until(ExpectedConditions.visibilityOfElementLocated(by));
+        return webElement != null;
+    }
+
+    public boolean urlContains(String path) {
+        return new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.urlContains(path));
     }
 }
