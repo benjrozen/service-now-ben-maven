@@ -14,6 +14,10 @@
  - from IDE (Intellij) -> install `EnvFile` plugin and add env file in base Run/Debug configuration
    https://plugins.jetbrains.com/plugin/7861-envfile
 
+## :warning: Webdriver location
+By default the script checks if the environment is of Jenkins/ Semaphore if true- the webdriver will be created in a docker.
+It can be ovveridden by `isCI` field in `WebDriverFactory.java`
+
 ## Scope:
 This test plan covers the following aspects:
 
